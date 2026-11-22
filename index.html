@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMS Food & Drinks | Discover. Dine. Enjoy.</title>
+  <meta name="description" content="BookMyShow Food & Drinks frontend prototype for restaurants, takeout and dining.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="BookMyShow Food and Drinks home">
+      <span class="brand-mark">B</span>
+      <span><strong>BookMyShow</strong><small>FOOD & DRINKS</small></span>
+    </a>
+    <nav>
+      <a href="#home">Home</a><a href="#restaurants">Restaurants</a><a href="#orders" id="ordersNav">Orders</a><a href="#bookings" id="bookingsNav">Bookings</a>
+    </nav>
+    <div class="header-actions">
+      <button class="location-pill" id="locationBtn">⌖ <span id="currentLocation">Indiranagar, Bengaluru</span></button>
+      <div class="account-area"><button class="icon-btn" id="loginBtn" title="Login">Login</button><small id="userStatus">Not logged in</small></div>
+      <button class="cart-btn" id="cartBtn">Cart <b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">FRESH • LOCAL • DELICIOUS</p>
+        <h1>Your city.<br><em>Your table.</em><br>Your kind of food.</h1>
+        <p class="hero-text">Discover restaurants, offers and takeout around Bengaluru. Pick a place, choose your mood, and let dinner take it from there.</p>
+        <div class="search-box">
+  <span>⌕</span>
+
+  <input
+    id="heroSearch"
+    placeholder="Search restaurants, cuisines or food..."
+    autocomplete="off"
+  >
+
+  <div id="activeFilters" class="active-filters"></div>
+
+  <button id="searchBtn">Search</button>
+</div>
+        <div class="quick-tags">
+          <button data-cuisine="North Indian">North Indian</button><button data-cuisine="Chinese">Chinese</button><button data-cuisine="Biryani">Biryani</button><button data-cuisine="South Indian">South Indian</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-card hero-card-main"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85" alt="Pizza"></div>
+        <div class="hero-card hero-card-small"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=85" alt="Restaurant interior"></div>
+        <div class="floating-offer"><span>FIRST ORDER</span><strong>25% OFF</strong><small>Use code BMS25</small></div>
+      </div>
+    </section>
+
+    <section class="feature-strip">
+      <div><span>✦</span><b>25+ restaurants</b><small>Across Bengaluru</small></div>
+      <div><span>◉</span><b>Takeout ETA</b><small>Shown before checkout</small></div>
+      <div><span>♡</span><b>Real-looking reviews</b><small>Ratings & written feedback</small></div>
+      <div><span>✓</span><b>Easy checkout</b><small>UPI, card & wallet</small></div>
+    </section>
+
+    <section class="section" id="restaurants">
+      <div class="section-head">
+        <div><p class="eyebrow">DISCOVER AROUND YOU</p><h2>Good food, <em>close by.</em></h2><span id="resultCount" class="result-count"></span></div>
+        <button class="outline-btn" id="viewAllBtn">View all →</button>
+      </div>
+
+      <div class="filter-panel">
+        <div class="filter-row">
+          <label>Location<select id="locationFilter"></select></label>
+          <label>Cuisine<select id="cuisineFilter"><option value="all">All cuisines</option></select></label>
+          <label>Food type<select id="typeFilter"><option value="all">All</option><option>Veg</option><option>Non-Veg</option><option>Both</option></select></label>
+          <label>Price<select id="priceFilter"><option value="all">Any price</option><option value="budget">₹ under 500</option><option value="mid">₹500–₹1000</option><option value="premium">₹1000+</option></select></label>
+          <label>Rating<select id="ratingFilter"><option value="all">Any rating</option><option value="4.5">4.5+</option><option value="4">4.0+</option></select></label>
+          <button class="clear-btn" id="clearFilters">Clear</button>
+        </div>
+      </div>
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+    </section>
+
+    <section class="promo section">
+      <div><p class="eyebrow">THIS WEEK'S TABLE</p><h2>More than a meal.<br><em>Make it a plan.</em></h2><p>Use your dining offer, choose a preferred seating option, or switch to takeout when time is tight.</p><button class="dark-btn" id="promoBtn">Explore offers →</button></div>
+      <div class="promo-art"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85" alt="Dining table"></div>
+    </section>
+
+    <section class="section offers-section">
+      <div class="section-head"><div><p class="eyebrow">OFFERS & EXPERIENCES</p><h2>Pick your <em>perfect bite.</em></h2></div></div>
+      <div class="offer-grid">
+        <article class="offer-card dark"><span>DINING</span><h3>Up to 25% off<br>on selected tables</h3><p>Valid this week • Limited slots</p><button data-action="offers">Browse tables →</button></article>
+        <article class="offer-card light"><span>TAKEOUT</span><h3>Free delivery<br>on orders ₹499+</h3><p>Selected restaurants • Today</p><button data-action="offers">Order food →</button></article>
+        <article class="offer-card wine"><span>PAYMENT</span><h3>Extra savings<br>with UPI</h3><p>Instant discount up to ₹100</p><button data-action="offers">See payment offers →</button></article>
+      </div>
+    </section>
+
+    <section class="section reviews">
+      <div class="review-intro"><p class="eyebrow">CUSTOMER NOTES</p><h2>People came for the food.<br><em>They stayed for the vibe.</em></h2></div>
+      <div class="review-card" id="reviewCard"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><span class="brand-mark">B</span><div><strong>BookMyShow</strong><small>FOOD & DRINKS</small></div></div>
+    <p>Frontend academic prototype • Bengaluru default location • No real transactions are processed.</p>
+    <div class="footer-links"><a href="#home">Home</a><a href="#restaurants">Restaurants</a><a href="#orders">Order history</a></div>
+  </footer>
+
+  <!-- Location Modal -->
+  <div class="modal" id="locationModal"><div class="modal-box"><button class="close" data-close>×</button><p class="eyebrow">CHOOSE YOUR AREA</p><h2>Where are you eating?</h2><p class="muted">Automatic location is simulated with a Bengaluru default. You can change it manually.</p><form id="manualLocationForm" class="manual-location"><input id="manualLocation" placeholder="Enter location manually e.g. MG Road, Bengaluru"><button class="dark-btn" type="submit">Use this location</button></form><div class="location-options" id="locationOptions"></div></div></div>
+
+  <!-- Login / Account Modal -->
+  <div class="modal" id="loginModal"><div class="modal-box compact"><button class="close" data-close>×</button><div id="loginContent"></div></div></div>
+
+  <!-- Restaurant Modal -->
+  <div class="modal" id="restaurantModal"><div class="modal-box wide"><button class="close" data-close>×</button><div id="restaurantDetail"></div></div></div>
+
+  <!-- Menu Modal -->
+  <div class="modal" id="menuModal"><div class="modal-box wide"><button class="close" data-close>×</button><div id="menuDetail"></div></div></div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cartDrawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" data-close>×</button></div><div id="cartItems"></div><div class="cart-summary"><div><span>Subtotal</span><b id="cartSubtotal">₹0</b></div><div><span>Offer savings</span><b id="cartDiscount">₹0</b></div><div><span>Tax & fees</span><b id="cartFees">₹0</b></div><div class="total"><span>Total</span><b id="cartTotal">₹0</b></div><button class="dark-btn full" id="checkoutBtn">Continue to payment →</button></div></div>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkoutModal"><div class="modal-box wide"><button class="close" data-close>×</button><div id="checkoutContent"></div></div></div>
+
+  <!-- Orders Modal -->
+  <div class="modal" id="ordersModal"><div class="modal-box wide"><button class="close" data-close>×</button><div id="ordersContent"></div></div></div>
+
+  <!-- Bookings Modal -->
+  <div class="modal" id="bookingsModal"><div class="modal-box wide"><button class="close" data-close>×</button><div id="bookingsContent"></div></div></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
